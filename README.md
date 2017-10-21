@@ -1,1 +1,1 @@
-# google-translate-react-native
+Power Translator for React Native

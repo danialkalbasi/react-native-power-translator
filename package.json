@@ -1,0 +1,63 @@
+{
+  "name": "react-native-power-translator",
+  "version": "1.0.0",
+  "description": "A light interface to translate texts to any language with different providers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --no-cache --watchAll",
+    "lint": "eslint --fix modules/**/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielkalbasi/react-native-power-translator.git"
+  },
+  "keywords": [
+    "react-native",
+    "react",
+    "google",
+    "translation",
+    "react",
+    "native",
+    "react",
+    "native",
+    "google",
+    "translate"
+  ],
+  "author": "Daniel Kalbasi <danial.kalbassi@gmail.com> (www.danielkalbasi.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danielkalbasi/react-native-power-translator/issues"
+  },
+  "homepage": "https://github.com/danielkalbasi/react-native-power-translator#readme",
+  "jest": {
+    "preset": "jest-expo",
+    "collectCoverageFrom": [
+      "(/__tests__/.*|(\\.|/)(test|spec))\\.js?$",
+      "!**/node_modules/**"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/test-setup.js"
+    },
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
+  "dependencies": {
+    "xmldom": "^0.1.27"
+  },
+  "devDependencies": {
+    "babel-jest": "^20.0.3",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react-native-stage-0": "^1.0.1",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-config-airbnb-base": "^12.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "jest-expo": "~21.0.0",
+    "lodash": "^4.17.4",
+    "react-dom": "^16.0.0-beta.5",
+    "react-test-renderer": "16.0.0-alpha.12",
+    "sinon": "^4.0.1"
+  }
+}
