@@ -42,8 +42,8 @@
       "/node_modules/"
     ]
   },
-  "dependencies": {
-    "xmldom": "^0.1.27"
+  "peerDependencies": {
+    "xmldom": "0.1.x"
   },
   "devDependencies": {
     "babel-jest": "^20.0.3",
