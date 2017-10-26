@@ -24,33 +24,33 @@ class Translation {
      * If the sourceLanguage is empty, the provider will auto detect the language
      */
     setConfig(providerName, apiKey, targetLanguage, sourceLanguage = false) {
-        if (!providerName || !apiKey) {
-            throw new Error('Please set the provider name and its API key');
-        }
+      if (!providerName || !apiKey) {
+        throw new Error('Please set the provider name and its API key');
+      }
 
-        if (!targetLanguage) {
-            throw new Error('Please set the target language');
-        }
+      if (!targetLanguage) {
+        throw new Error('Please set the target language');
+      }
 
-        if (!ProviderTypes.hasOwnProperty(providerName)) {
-            throw new Error('The provider type is not valid!');
-        }
+      if (!ProviderTypes.hasOwnProperty(providerName)) {
+        throw new Error('The provider type is not valid!');
+      }
 
-        this.config = {
-            providerName: providerName,
-            apiKey: apiKey,
-            targetLanguage: targetLanguage,
-            sourceLanguage: sourceLanguage,
-        };
+      this.config = {
+        providerName,
+        apiKey,
+        targetLanguage,
+        sourceLanguage,
+      };
     }
 
     /**
      * Get and return the config
      */
     getConfig() {
-        return this.config;
+      return this.config;
     }
-    
+
     /**
      * This function get the provider and instantiate the right translator class 
      * to translate the text string which passed as a parameter.
@@ -59,19 +59,35 @@ class Translation {
      * If the provider is not valid, the original text will be returned as a fallback.
      */
     get(text) {
-        const config = this.getConfig();
+      const config = this.getConfig();
 
-        if (this.config.providerName === ProviderTypes.Google) {
-            const googleTranslator = new GoogleTranslator(config);
-            return googleTranslator.translate(text);
-        }
+      if (this.config.providerName === ProviderTypes.Google) {
+        const googleTranslator = new GoogleTranslator(config);
+        return googleTranslator.translate(text)
+          .then(translated => this.htmlEntities(translated));
+      }
 
-        if (this.config.providerName === ProviderTypes.Microsoft) {
-            const microsoftTranslator = new MicrosoftTranslator(config);
-            return microsoftTranslator.translate(text);
-        }
+      if (this.config.providerName === ProviderTypes.Microsoft) {
+        const microsoftTranslator = new MicrosoftTranslator(config);
+        return microsoftTranslator.translate(text)
+          .then(translated => this.htmlEntities(translated));
+      }
 
-        return new Promise((resolve) => { resolve(text) });
+      return new Promise((resolve) => { resolve(text); });
+    }
+
+    htmlEntities(param) {
+      let text = param;
+
+      const characters = {
+        '«': '', '»': '', '&lt;': '<', '&gt;': '>', '&sol;': '/', '&quot;': '"', '&apos;': '\'', '&amp;': '&', '&laquo;': '«', '&raquo;': '»', '&nbsp;': ' ', '&copy;': '©', '&reg;': '®', '&deg;': '°',
+      };
+      Object.keys(characters).forEach((key) => {
+        text = text.replace(new RegExp(key, 'g'), characters[key]);
+      });
+      const result = text.replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(dec)).trim();
+
+      return result;
     }
 }
 

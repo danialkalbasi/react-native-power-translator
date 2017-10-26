@@ -12,9 +12,9 @@ describe('Translation Service', () => {
         sourceLanguage: false,
     };
     const MicrosoftTranslatorStub = sinon.stub(MicrosoftTranslator.prototype, 'translate')
-        .callsFake(() => { return 'Microsoft' });
+        .callsFake(() => { return new Promise.resolve('Microsoft') });
     const GoogleTranslatorStub = sinon.stub(GoogleTranslator.prototype, 'translate')
-        .callsFake(() => { return 'Google' });
+        .callsFake(() => { return new Promise.resolve('Google') });
 
     beforeEach(() => {
         Translation.setConfig(ProviderTypes.Google, 'SOME_KEY', 'fr');
@@ -68,8 +68,11 @@ describe('Translation Service', () => {
             const result = Translation.get('Text');
 
             // Assert
-            expect(result).toBe('Google');
-            expect(GoogleTranslatorStub.called).toBeTruthy();
+            result.then(translated => {
+                expect(translated).toBe('Google')
+                expect(GoogleTranslatorStub.called).toBeTruthy();
+            });
+
         });
 
         it('should create an return `Microsoft` as a translation and call the MicrosoftTranslator translate function', () => {
@@ -78,8 +81,10 @@ describe('Translation Service', () => {
             const result = Translation.get('Text');
 
             // Assert
-            expect(result).toBe('Microsoft');
-            expect(MicrosoftTranslatorStub.called).toBeTruthy();
+            result.then(translated => {
+                expect(translated).toBe('Microsoft');
+                expect(MicrosoftTranslatorStub.called).toBeTruthy();
+            });
         });
     });
 });

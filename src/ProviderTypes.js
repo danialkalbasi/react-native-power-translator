@@ -1,6 +1,6 @@
 const ProviderTypes = {
-  Google: 'Google',
-  Microsoft: 'Microsoft',
+    Google: 'Google',
+    Microsoft: 'Microsoft',
 };
 
 export default ProviderTypes;

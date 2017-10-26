@@ -22,7 +22,8 @@
         "import/extensions": 0,
         "react/sort-comp": 0,
         "prefer-default-export": 0,
-        "jsx-a11y/href-no-hash": 0
+        "jsx-a11y/href-no-hash": 0,
+        "no-prototype-builtins": 0
     },
     "parserOptions": {
         "ecmaVersion": 6,
