@@ -55,6 +55,10 @@ export default class PowerTranslator extends Component {
       this.getTranslation();
     }
 
+    componentWillReceiveProps() {
+      this.getTranslation();
+    }
+
     getTranslation() {
       this.props.onTranslationStart();
 
