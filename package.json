@@ -1,11 +1,11 @@
 {
   "name": "react-native-power-translator",
   "version": "1.0.0",
-  "description": "A light interface to translate texts to any language with different providers.",
+  "description": "A no-hassle way to use Google and Microsoft cloud translation services in react native.",
   "main": "index.js",
   "scripts": {
     "test": "jest --no-cache --watchAll",
-    "lint": "eslint --fix modules/**/**/*.js"
+    "lint": "eslint --fix src/**/*.js"
   },
   "repository": {
     "type": "git",
