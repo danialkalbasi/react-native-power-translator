@@ -10,6 +10,12 @@ class HTTPMethods {
       this.setDefaultHeaders();
     }
 
+    /**
+     * For internal use only.
+     * @param url is the http URL
+     * @param url is the http URL
+     * @returns promise response
+     */
     baseGet(url, headers) {
       return fetch(url, headers).then((result) => {
         if (result.ok) {
@@ -19,6 +25,14 @@ class HTTPMethods {
       }).catch(error => Promise.reject(this.handleError(url, error)));
     }
 
+    /**
+     * Use the http get method
+     * @param url is the http URL
+     * @param cache whether do you need to cache the response
+     * @param url is the http URL
+     * @param headers is the http headers
+     * @returns promise response
+     */
     get(url, cache = false, headers) {
       const getHeaders = headers || this.headers;
 
@@ -43,6 +57,13 @@ class HTTPMethods {
         .catch(error => Promise.reject(this.handleError(url, error)));
     }
 
+    /**
+     * Use the http post method
+     * @param data is the data needs to post to the server
+     * @param url is the http URL
+     * @param headers is the http headers
+     * @returns promise response
+     */
     post(url, data, headers) {
       return fetch(url, {
         method: 'POST',
@@ -51,11 +72,19 @@ class HTTPMethods {
       }).then(this.toJson);
     }
 
+    /**
+     * Show an error message when there is a response error
+     * @param url the http url
+     * @param error the promise error thrown by the http response
+     */
     handleError(url, error) {
       const errorMessage = `The URL: ${url}, Error: ${error}`;
       throw new Error(errorMessage);
     }
 
+    /**
+     * Set default http headers for all requests
+     */
     setDefaultHeaders() {
       this.headers = {
         Accept: 'application/json',
@@ -64,6 +93,11 @@ class HTTPMethods {
       };
     }
 
+    /**
+     * Convert response data to json
+     * @param data is the response data
+     * @returns json object
+     */
     toJson(data) {
       let isJson = true;
       if (typeof data === 'boolean' || typeof data === 'number') {
@@ -76,6 +110,11 @@ class HTTPMethods {
       return isJson ? data.json() : data;
     }
 
+    /**
+     * Create an unique key from the url.
+     * @param url is the http url
+     * @returns string
+     */
     getUrlKey(url) {
       return url.replace(/[^\w\s]/gi, '');
     }
