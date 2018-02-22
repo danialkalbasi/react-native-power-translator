@@ -1,6 +1,6 @@
 {
   "name": "react-native-power-translator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A no-hassle way to use Google and Microsoft cloud translation services in react native.",
   "main": "index.js",
   "scripts": {

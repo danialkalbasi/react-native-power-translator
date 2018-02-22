@@ -34,7 +34,7 @@ export default class PowerTranslator extends Component {
          * style of the translated text. 
          * all the styles for Text component is valid.
          */
-      style: PropTypes.object,
+      style: PropTypes.oneOfType([PropTypes.object, PropTypes.style]),
     }
 
     static defaultProps = {
