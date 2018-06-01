@@ -5,7 +5,6 @@ exports[`PowerTranslator Component Rendering should create the PowerTranslator c
   <Text
     accessible={true}
     allowFontScaling={true}
-    disabled={false}
     ellipsizeMode="tail"
     style={
       Array [
@@ -15,7 +14,7 @@ exports[`PowerTranslator Component Rendering should create the PowerTranslator c
       ]
     }
   >
-    A text to translate
+    
   </Text>
 </View>
 `;

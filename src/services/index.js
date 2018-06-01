@@ -1,3 +1,7 @@
-import Translation from './Translation';
+import TranslatorFactory from './TranslatorFactory';
+import TranslatorConfiguration from './TranslatorConfiguration';
 
-export default Translation;
+export {
+  TranslatorFactory,
+  TranslatorConfiguration,
+};

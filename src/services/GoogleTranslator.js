@@ -1,10 +1,13 @@
 import HTTPMethods from './HTTPMethods';
 import { GOOGLE } from '../Constants';
+import BaseTranslator from './BaseTranslator';
+import htmlEntities from './HtmlUtility';
 
-export default class GoogleTranslator {
+export default class GoogleTranslator extends BaseTranslator {
     config;
 
     constructor(config) {
+      super();
       this.config = config;
     }
 
@@ -13,7 +16,8 @@ export default class GoogleTranslator {
       const data = this.createTheRequest(text);
 
       return HTTPMethods.post(url, data)
-        .then(translation => translation.data.translations[0].translatedText);
+        .then(translation => translation.data.translations[0].translatedText)
+        .then(htmlEntities);
     }
 
     createTheRequest(text) {

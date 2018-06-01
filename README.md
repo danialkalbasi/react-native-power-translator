@@ -11,29 +11,31 @@ npm i react-native-power-translator --save
 ## Get started
 1. Import a few things.
 ```
-import { PowerTranslator, ProviderTypes, Translation } from 'react-native-power-translator';
+import { PowerTranslator, ProviderTypes, TranslatorConfiguration, TranslatorFactory } from 'react-native-power-translator';
 ```
 * **PowerTranslator**: is a simple component to translate your texts.
 * **ProviderTypes**: is a type of cloud provider you want to use. There are two providers you can specify. ProvierTypes.Google for [google translate](https://cloud.google.com/translate/docs/) and ProviderTypes.Microsoft for [microsoft translator text](https://azure.microsoft.com/en-us/services/cognitive-services/translator-text-api/) cloud service.
-* **Translation**: is a service which you can directly translate your texts. It returns a promise.
+* **TranslatorFactory**: It returns a suitable translator instance, based on your configuration.
+* **TranslatorConfiguration**: It is a singleton class that keeps the translator configuration.
 
 2. Set PowerTranslator configuration. The translation service is designed singleton, so you can call it anywhere and anytime, as long as it gets called, we are good!
 ```
 //Example
-Translation.setConfig('Provider_Type', 'Your_API_Key','Target_Language', 'Source_Language');
+TranslatorConfiguration.setConfig('Provider_Type', 'Your_API_Key','Target_Language', 'Source_Language');
 
 //Fill with your own details
-Translation.setConfig(ProviderTypes.Google, 'xxxx','fr');
+TranslatorConfiguration.setConfig(ProviderTypes.Google, 'xxxx','fr');
 ```
 Note: The source of the language is optional, if you are not passing it, the provider will detect the language for you.
 ## Use it as a component
 ```
 <PowerTranslator text={'Engineering physics or engineering science refers to the study of the combined disciplines of physics'} />
 ```
-## Use it as a service
+## Use it as a class
 You can also use it as a service. The return value will be a promise with a translated text.
 ```
-Translation.get('Engineering physics or engineering science').then(translated => {
+const translator = TranslatorFactory.createTranslator();
+translator.translate('Engineering physics or engineering science').then(translated => {
     //Do something with the translated text
 });
 ```

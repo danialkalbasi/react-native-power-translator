@@ -17,12 +17,14 @@ class HTTPMethods {
      * @returns promise response
      */
     baseGet(url, headers) {
-      return fetch(url, headers).then((result) => {
-        if (result.ok) {
-          return result;
-        }
-        return Promise.reject(this.handleError(url, 'Generic error'));
-      }).catch(error => Promise.reject(this.handleError(url, error)));
+      return fetch(url, headers)
+        .then((result) => {
+          if (result.ok) {
+            return result;
+          }
+          return Promise.reject(this.handleError(url, 'Generic error'));
+        })
+        .catch(error => Promise.reject(this.handleError(url, error)));
     }
 
     /**
@@ -46,13 +48,11 @@ class HTTPMethods {
           });
           return responsePromise;
         }
-        return this
-          .baseGet(url, getHeaders)
+        return this.baseGet(url, getHeaders)
           .then(this.toJson)
           .catch(error => Promise.reject(this.handleError(url, error)));
       }
-      return this
-        .baseGet(url, getHeaders)
+      return this.baseGet(url, getHeaders)
         .then(this.toJson)
         .catch(error => Promise.reject(this.handleError(url, error)));
     }
@@ -69,7 +69,8 @@ class HTTPMethods {
         method: 'POST',
         headers: headers || this.headers,
         body: JSON.stringify(data),
-      }).then(this.toJson);
+      })
+        .then(this.toJson);
     }
 
     /**

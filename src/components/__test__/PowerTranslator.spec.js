@@ -1,30 +1,37 @@
 'strict_mode';
 
-import { Text, View } from 'react-native';
 import React from 'react';
+import * as sinon from 'sinon';
 import PowerTranslator from '../PowerTranslator';
-const ReactTestRenderer = require('react-test-renderer');
+import TestRenderer from 'react-test-renderer';
+import TranslatorFactory from '../../services/TranslatorFactory';
+
+class GoogleTranslatorMock {
+    translate() {
+        return Promise.resolve();
+    }
+}
 
 describe('PowerTranslator Component', () => {
     let powerTranslatorComponent;
     let powerTranslatorComponentInstance;
     const textValue = 'A text to translate';
 
+    const TranslatorFactoryStub = sinon.stub(TranslatorFactory, 'createTranslator')
+        .callsFake(() => { return new GoogleTranslatorMock()});
+
     beforeEach(() => {
-        powerTranslatorComponent = ReactTestRenderer.create(<PowerTranslator
+        powerTranslatorComponent = TestRenderer.create(<PowerTranslator
             text={textValue}
             style={{ color: '#ccc' }} />);
 
         powerTranslatorComponentInstance = powerTranslatorComponent.getInstance();
+        console.log(powerTranslatorComponentInstance)
     });
 
     describe('Rendering', () => {
         it('should create the PowerTranslator component', () => {
             expect(powerTranslatorComponent.toJSON()).toMatchSnapshot();
-        });
-
-        it('should return the translation as the original text', () => {
-            expect(powerTranslatorComponentInstance.state.translatedText).toBe(textValue);
         });
 
         it('should onTranslationStart function has default prop value', () => {

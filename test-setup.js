@@ -4,4 +4,3 @@ module.exports = require('babel-jest').createTransformer({
       'react-native-stage-0',
     ],
   });
-  

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import PropTypes from 'prop-types';
-import Translation from '../services';
+import { TranslatorFactory } from '../services';
 
 /**
  * Main component of Power Translator module.
@@ -13,36 +13,36 @@ export default class PowerTranslator extends Component {
 
     static propTypes = {
       /**
-         * text is the prop which pass to the translator service 
-         * to translate into target language
+         * text is your text that need to translate
+         * into target language
          */
       text: PropTypes.string.isRequired,
 
       /**
-         * onTranslationStart is a function callback which trigger 
+         * onTranslationStart is a function callback which trigger
          * when the translation is start
          */
       onTranslationStart: PropTypes.func,
 
       /**
-         * onTranslationDone is a function callback which trigger 
+         * onTranslationDone is a function callback which trigger
          * when the translation is done
          */
       onTranslationEnd: PropTypes.func,
 
       /**
-         * style of the translated text. 
+         * style of the translated text.
          * all the styles for Text component is valid.
          */
-      style: PropTypes.oneOfType([PropTypes.object, PropTypes.style]),
-    }
+      style: PropTypes.object,
+    };
 
     static defaultProps = {
       text: '',
       style: {},
-      onTranslationStart: () => { },
-      onTranslationEnd: () => { },
-    }
+      onTranslationStart: () => {},
+      onTranslationEnd: () => {},
+    };
 
     constructor(props) {
       super(props);
@@ -61,8 +61,9 @@ export default class PowerTranslator extends Component {
 
     getTranslation() {
       this.props.onTranslationStart();
+      const translator = TranslatorFactory.createTranslator();
 
-      Translation.get(this.props.text).then((translated) => {
+      translator.translate(this.props.text).then((translated) => {
         this.setState({ translatedText: translated }, () => {
           this.props.onTranslationEnd();
         });
@@ -72,7 +73,9 @@ export default class PowerTranslator extends Component {
     render() {
       return (
         <View>
-          <Text style={[{ ...this.props.style }]}>{this.state.translatedText}</Text>
+          <Text style={[{ ...this.props.style }]}>
+            {this.state.translatedText}
+          </Text>
         </View>
       );
     }
