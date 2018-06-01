@@ -1,9 +1,9 @@
 ## Power Translator - A simple way to use cloud translation services
 PowerTranslator gives you a no-hassle way to use Google and Microsoft cloud translation services in react native. It can be used as a component or as a service.
 
-![Power Translator Demo](https://github.com/danielkalbasi/react-native-power-translator/blob/master/power-translator-demo.gif)
+![Power Translator Demo](https://github.com/danialkalbasi/react-native-power-translator/blob/master/power-translator-demo.gif)
 
-Get the demo file from here: [Download Demo](https://gist.github.com/danielkalbasi/350d960a6d28016a3331f6a9c7baefa4)
+Get the demo file from here: [Download Demo](https://gist.github.com/danialkalbasi/350d960a6d28016a3331f6a9c7baefa4)
 ## Install
 ```
 npm i react-native-power-translator --save
