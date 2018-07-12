@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Text, View } from 'react-native';
-import PropTypes from 'prop-types';
-import Translation from '../services';
+import React, { Component } from "react";
+import { Text, View } from "react-native";
+import PropTypes from "prop-types";
+import Translation from "../services";
 
 /**
  * Main component of Power Translator module.
@@ -9,71 +9,73 @@ import Translation from '../services';
  * The source and target language can be specified through the Translation service.
  */
 export default class PowerTranslator extends Component {
-    translatedText;
+  translatedText;
 
-    static propTypes = {
-      /**
-         * text is the prop which pass to the translator service 
-         * to translate into target language
-         */
-      text: PropTypes.string.isRequired,
+  static propTypes = {
+    /**
+     * text is the prop which pass to the translator service
+     * to translate into target language
+     */
+    text: PropTypes.string.isRequired,
 
-      /**
-         * onTranslationStart is a function callback which trigger 
-         * when the translation is start
-         */
-      onTranslationStart: PropTypes.func,
+    /**
+     * onTranslationStart is a function callback which trigger
+     * when the translation is start
+     */
+    onTranslationStart: PropTypes.func,
 
-      /**
-         * onTranslationDone is a function callback which trigger 
-         * when the translation is done
-         */
-      onTranslationEnd: PropTypes.func,
+    /**
+     * onTranslationDone is a function callback which trigger
+     * when the translation is done
+     */
+    onTranslationEnd: PropTypes.func,
 
-      /**
-         * style of the translated text. 
-         * all the styles for Text component is valid.
-         */
-      style: PropTypes.object,
-    }
+    /**
+     * style of the translated text.
+     * all the styles for Text component is valid.
+     */
+    style: PropTypes.object
+  };
 
-    static defaultProps = {
-      text: '',
-      style: {},
-      onTranslationStart: () => { },
-      onTranslationEnd: () => { },
-    }
+  static defaultProps = {
+    text: this.props.text,
+    style: {},
+    onTranslationStart: () => {},
+    onTranslationEnd: () => {}
+  };
 
-    constructor(props) {
-      super(props);
-      this.state = {
-        translatedText: '',
-      };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedText: ""
+    };
+  }
 
-    componentDidMount() {
-      this.getTranslation();
-    }
+  componentDidMount() {
+    this.getTranslation();
+  }
 
-    componentWillReceiveProps() {
-      this.getTranslation();
-    }
+  componentWillReceiveProps() {
+    this.getTranslation();
+  }
 
-    getTranslation() {
-      this.props.onTranslationStart();
+  getTranslation() {
+    this.props.onTranslationStart();
 
-      Translation.get(this.props.text).then((translated) => {
-        this.setState({ translatedText: translated }, () => {
-          this.props.onTranslationEnd();
-        });
+    Translation.get(this.props.text).then(translated => {
+      this.setState({ translatedText: translated }, () => {
+        this.props.onTranslationEnd();
       });
-    }
+    });
+  }
 
-    render() {
-      return (
-        <View>
-          <Text style={[{ ...this.props.style }]}>{this.state.translatedText}</Text>
-        </View>
-      );
-    }
+  render() {
+    return (
+      <View>
+        <Text style={[{ ...this.props.style }]}>
+          {this.state.translatedText}
+        </Text>
+      </View>
+    );
+  }
 }
