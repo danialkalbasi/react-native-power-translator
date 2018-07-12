@@ -38,7 +38,7 @@ export default class PowerTranslator extends Component {
   };
 
   static defaultProps = {
-    text: this.props.text,
+    text: "",
     style: {},
     onTranslationStart: () => {},
     onTranslationEnd: () => {}
@@ -47,7 +47,7 @@ export default class PowerTranslator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      translatedText: ""
+      translatedText: props.text
     };
   }
 
