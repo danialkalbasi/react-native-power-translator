@@ -13,7 +13,7 @@ export default class MicrosoftTranslator extends BaseTranslator {
       this.config = config;
     }
 
-    translate(text, lang = "") {
+    translate(text, lang = '') {
       if (lang)  this.config.targetLanguage = lang;
       const url = this.createTheRequest(text);
       const header = {
