@@ -11,7 +11,7 @@ export default class GoogleTranslator extends BaseTranslator {
       this.config = config;
     }
 
-    translate(text, lang = "") {
+    translate(text, lang = '') {
       if (lang)  this.config.targetLanguage = lang;
       const url = `${GOOGLE.TRANSLATE}${this.config.apiKey}`;
       const data = this.createTheRequest(text);
