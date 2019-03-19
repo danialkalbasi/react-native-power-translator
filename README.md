@@ -39,6 +39,13 @@ translator.translate('Engineering physics or engineering science').then(translat
     //Do something with the translated text
 });
 ```
+You can also pass in an optional language parameter to translate to desire languagues (default use current config)
+```
+const translator = TranslatorFactory.createTranslator();
+translator.translate('Engineering physics or engineering science', 'fr').then(translated => {
+    //Do something with the translated text which would be in French
+});
+```
 
 ## Complete reference
 * **PowerTranslator**: A react component to translate your texts.
