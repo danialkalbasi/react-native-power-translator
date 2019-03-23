@@ -47,6 +47,16 @@ translator.translate('Engineering physics or engineering science', 'fr').then(tr
 });
 ```
 
+You can specify optional source language (otherwise it autodetects) 
+
+```
+const translator = TranslatorFactory.createTranslator();
+translator.translate('chair', 'en', 'fr').then(translated => {
+    //Chair has different meaning in French/English
+});
+```
+
+
 ## Complete reference
 * **PowerTranslator**: A react component to translate your texts.
 * **ProviderTypes**: List of the cloud provider types. There are two providers is available. ProvierTypes.Google for [google translate](https://cloud.google.com/translate/docs/) and ProviderTypes.Microsoft for [microsoft translator text](https://azure.microsoft.com/en-us/services/cognitive-services/translator-text-api/) cloud service.
