@@ -49,7 +49,7 @@ translator.translate('Engineering physics or engineering science', 'fr').then(tr
 
 ## Complete reference
 * **PowerTranslator**: A react component to translate your texts.
-* **ProviderTypes**: List of the cloud provider types. There are two providers is available. ProvierTypes.Google for [google translate](https://cloud.google.com/translate/docs/) and ProviderTypes.Microsoft for [microsoft translator text](https://azure.microsoft.com/en-us/services/cognitive-services/translator-text-api/) cloud service.
+* **ProviderTypes**: List of the cloud provider types. There are two providers is available. ProviderTypes.Google for [google translate](https://cloud.google.com/translate/docs/) and ProviderTypes.Microsoft for [microsoft translator text](https://azure.microsoft.com/en-us/services/cognitive-services/translator-text-api/) cloud service.
 * **TranslatorFactory**: It creates a suitable translator instance, based on your configuration.
 * **TranslatorConfiguration**: It initializes and keeps the translator configuration.
 
