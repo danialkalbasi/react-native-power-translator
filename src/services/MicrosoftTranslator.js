@@ -2,8 +2,7 @@ import HTTPMethods from './HTTPMethods';
 import { MICROSOFT } from '../Constants';
 import BaseTranslator from './BaseTranslator';
 import htmlEntities from './HtmlUtility';
-
-const DOMParser = require('xmldom').DOMParser;
+import { DOMParser } from '@xmldom/xmldom'
 
 export default class MicrosoftTranslator extends BaseTranslator {
     config;
